@@ -1,7 +1,6 @@
 import random
 class Overworld:
     ORIGIN = [0, 0]
-    DESTINATION = generateDestination()
 
     enemies = []
     items = []
@@ -17,22 +16,26 @@ class Overworld:
         #if 0, west; if 1, east
         xAxis = random.randrange(0, 1)
 
-        if xAxis == 0:
+        if xAxis is 0:
             destination.extend(random.randrange(-30, -15))
         else:
             destination.extend(random.randrange(15, 30))
 
-        if yAxis == 0:
+        if yAxis is 0:
             destination.extend(random.randrange(15, 30))
         else:
             destination.extend(random.randrange(-30, -15))
 
         return destination
 
+    DESTINATION = generateDestination()
+
 class WorldChunk:
     """Making chunks 3 x 3 for now"""
     SIZE = 3
-    AREA = populateNodes()
+
+    xPos = 0
+    yPos = 0
 
     def populateNodes():
         #Using generic random generation 0-4
@@ -45,18 +48,20 @@ class WorldChunk:
                            
             area.append(row)
 
+    AREA = populateNodes()
         
 
 class WorldNode:
     enemies = []
     items = []
-    directions = []
+    exitDirections = []
 
-    directionalCount = 0
+    xPos = 0
+    yPos = 0
 
-    #inits node with number of directions available to it for generation
-    def __init__(iDirections):
-        self.directionalCount = iDirections
+    def __init__(self, xPos, yPos):
+        self.xPos = xPos
+        self.yPos = yPos
 
     def addItem(item):
         items.extend(item)
@@ -75,17 +80,10 @@ class WorldNode:
         self.directions.extend(direction)
         
     def hasNorthExit():
-        return "north" in directions
+        return "north" in exitDirections
     def hasSouthExit():
-        return "south" in directions
+        return "south" in exitDirections
     def hasEastExit():
-        return "east" in directions
+        return "east" in exitDirections
     def hasWestExit():
-        return "west" in directions
-    def north():
-
-    def south():
-
-    def east():
-
-    def west():
+        return "west" in exitDirections
