@@ -17,14 +17,14 @@ class Overworld:
         xAxis = random.randrange(0, 1)
 
         if xAxis is 0:
-            destination.extend(random.randrange(-30, -15))
+            destination.extend(random.randrange(-20, -5))
         else:
-            destination.extend(random.randrange(15, 30))
+            destination.extend(random.randrange(5, 20))
 
         if yAxis is 0:
-            destination.extend(random.randrange(15, 30))
+            destination.extend(random.randrange(5, 20))
         else:
-            destination.extend(random.randrange(-30, -15))
+            destination.extend(random.randrange(-20, -5))
 
         return destination
 
@@ -33,23 +33,12 @@ class Overworld:
 class WorldChunk:
     """Making chunks 3 x 3 for now"""
     SIZE = 3
-
-    xPos = 0
-    yPos = 0
-
-    def populateNodes():
-        #Using generic random generation 0-4
-        #for each direction or no direction
-        area = []
-        for i in range(SIZE):
-            row = []
-            for j in range(SIZE):
-                row.extend(random.randrange(0, 4))
-                           
-            area.append(row)
-
-    AREA = populateNodes()
         
+    def __init__(self, xPos, yPos):
+        self.xPos = xPos
+        self.yPos = yPos
+
+
 
 class WorldNode:
     enemies = []
@@ -59,9 +48,10 @@ class WorldNode:
     xPos = 0
     yPos = 0
 
-    def __init__(self, xPos, yPos):
+    def __init__(self, xPos, yPos, directions):
         self.xPos = xPos
         self.yPos = yPos
+        self.exitDirections = directions
 
     def addItem(item):
         items.extend(item)
