@@ -4,6 +4,7 @@ class Overworld:
 
     enemies = []
     items = []
+    print("LOLOLOLOLOLOL")
 
     def generateDestination():
         destination = []
